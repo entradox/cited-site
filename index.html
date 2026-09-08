@@ -162,7 +162,7 @@ footer a{ color:var(--ink-muted) }
 <div class="wrap">
   <div class="hero">
     <p class="eyebrow">Cited — AI visibility check</p>
-    <h1>Does ChatGPT recommend your practice, or the office down the street?</h1>
+    <h1>Does AI recommend your practice, or the office down the street?</h1>
     <p class="lede">Type your practice name below and see, in 30 seconds, exactly what AI search engines tell people looking for a practice like yours — with the AI's own words as proof.</p>
 
     <form class="scan-form" id="scanForm">
@@ -171,6 +171,7 @@ footer a{ color:var(--ink-muted) }
       <button type="submit" id="scanBtn">Check now →</button>
     </form>
     <p class="micro">Checks Google's Gemini today — Perplexity and Google AI Overviews next. No signup, no credit card.</p>
+    <p class="micro">You don't need to own the business to scan it — Cited asks public AI engines a public question and doesn't verify your affiliation. Reports are informational records of engine answers, not statements about the business.</p>
 
     <div class="error-box" id="errorBox"></div>
 
@@ -196,17 +197,20 @@ footer a{ color:var(--ink-muted) }
 
   <section>
     <span class="disclaimer">Informational only — not a guarantee of AI engine behavior, which changes without notice. See Terms.</span>
+    <p class="agency-line">We store the business name, city, and category you submit, and the scan report (kept up to 90 days so shareable links keep working, then deleted). Paying subscribers: Stripe collects your email at checkout; we store it and the business name only to run the weekly watch, and delete them within 7 days of cancellation. We never see card details. We do not sell your data. Request deletion any time: entradox@icloud.com.</p>
   </section>
 
   <footer>
     <p>Cited is a trade name of Parmanand LLC (Georgia, USA). Contact: entradox@icloud.com</p>
-    <p><a href="#">Terms of Service</a> · <a href="#">Privacy</a></p>
+    <p><a href="terms.html">Terms of Service</a> · <a href="terms.html#privacy">Privacy</a></p>
   </footer>
 </div>
 
 <script>
 const API_BASE = window.CITED_API_BASE || "https://cited-api-production.up.railway.app";
 const STRIPE_PAYMENT_LINK = "https://buy.stripe.com/00w7sKclUgwM9QNcjR24009"; // Cited Practice $39/mo — LIVE Payment Link (prod_VCU7mho9cJwE5C), created 2026-09-05
+const AGENCY_PAYMENT_LINK = "https://buy.stripe.com/9B68wObhQfsI4wtfw32400a"; // Cited Agency $99/mo — LIVE Payment Link, created 2026-09-05
+const PAYMENTS_LIVE = STRIPE_PAYMENT_LINK.startsWith("https://buy.stripe.com") && !STRIPE_PAYMENT_LINK.includes("TODO");
 
 const form = document.getElementById("scanForm");
 const btn = document.getElementById("scanBtn");
@@ -272,7 +276,7 @@ function renderResult(data) {
   }).join("");
 
   const anyLocked = data.results.some(r => r.cta_locked);
-  const lockedBox = anyLocked ? `
+  const lockedBox = anyLocked ? (PAYMENTS_LIVE ? `
     <div class="locked">
       <div class="locked-icon">🔒</div>
       <div class="locked-text">
@@ -281,12 +285,23 @@ function renderResult(data) {
       </div>
     </div>
     <a class="subscribe-btn" href="${STRIPE_PAYMENT_LINK}" target="_blank" rel="noopener">See My Full Fix — $39/mo</a>
-    <p class="subscribe-micro">Cancel anytime. Weekly re-check included — you'll know the moment AI stops recommending you, not months later when a patient mentions it.</p>` : "";
+    <p class="subscribe-micro">Cancel anytime. Weekly re-check included — you'll know the moment AI stops recommending you, not months later when a patient mentions it.</p>` : `
+    <div class="locked">
+      <div class="locked-icon">🔒</div>
+      <div class="locked-text">
+        This week's fix: we've already found it.
+        <div class="locked-pill">PAYMENTS LAUNCHING SOON</div>
+      </div>
+    </div>
+    <p class="subscribe-micro">Payments launching soon — join the waitlist at <a href="mailto:entradox@icloud.com">entradox@icloud.com</a>.</p>`) : "";
 
   const shareUrl = `${window.location.origin}${window.location.pathname}?report=${data.scan_id}`;
+  const agencyLine = PAYMENTS_LIVE
+    ? `<a href="${AGENCY_PAYMENT_LINK}" target="_blank" rel="noopener">Agency plan, $99/mo →</a>`
+    : `<a href="mailto:entradox@icloud.com">Agency plan — join the waitlist →</a>`;
   resultEl.innerHTML = items + lockedBox +
-    `<p class="share-line">Permanent link: <a href="${shareUrl}">${shareUrl}</a> — forward to your team.</p>
-     <p class="agency-line">Running this for clients? <a href="https://buy.stripe.com/9B68wObhQfsI4wtfw32400a" target="_blank" rel="noopener">Agency plan, $99/mo →</a></p>`;
+    `<p class="share-line">Shareable link (public — anyone with the link can view): <a href="${shareUrl}">${shareUrl}</a> — forward to your team.</p>
+     <p class="agency-line">Running this for clients? ${agencyLine}</p>`;
   resultEl.classList.add("active");
 }
 
