@@ -210,6 +210,7 @@ footer a{ color:var(--ink-muted) }
     <p class="micro"><strong>Cursor</strong> — merge into <code>mcp.json</code>: <code>{"mcpServers":{"cited":{"url":"https://cited-api-production.up.railway.app/mcp/"}}}</code></p>
     <p class="micro"><strong>Any MCP client:</strong> streamable-http remote <code>https://cited-api-production.up.railway.app/mcp/</code> · <strong>REST:</strong> <code>POST /scan</code> · <code>GET /report/{id}</code> · <code>GET /watch/{business}</code> · <strong>CLI:</strong> <code>cited scan "Practice" "City"</code> (exit 0=GREEN 1=AMBER 2=RED, JSON output)</p>
     <p class="micro">Docs for agents: <a href="https://cited-api-production.up.railway.app/llms.txt">llms.txt</a> · registry entry <code>io.github.entradox/cited-visibility-scanner</code> · API version header <code>X-API-Version</code> · typed errors <code>{"type","message"}</code> · live counters: <a href="https://cited-api-production.up.railway.app/stats">/stats</a></p>
+    <p class="micro"><strong>Agent skill:</strong> portable SKILL.md for any runtime (Claude Code, Codex, Cursor) — install via <code>raw.githubusercontent.com/entradox/cited-site/main/skill/cited-watch/SKILL.md</code>. Encodes the honest-reporting rules: <code>INCOMPLETE</code> is never a visibility verdict, evidence is quoted verbatim, free scans are single-run.</p>
     <p class="micro">Try these prompts once connected: "Scan Gentry Dentistry of Suwanee for AI visibility" · "Is my practice recommended by AI engines, with evidence?" · "Check weekly-watch status for my practice"</p>
   </section>
 
