@@ -1,0 +1,19 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.entradox/cited-visibility-scanner",
+  "title": "Cited",
+  "description": "AI-answer-engine visibility monitoring for local businesses - recommended-vs-competitor checks, as agent tools. Instant free scan, verbatim evidence quotes.",
+  "repository": {
+    "url": "https://github.com/entradox/cited-site",
+    "source": "github"
+  },
+  "websiteUrl": "https://entradox.github.io/cited-site/",
+  "version": "1.0.0",
+  "packages": [],
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://cited-api-production.up.railway.app/mcp/"
+    }
+  ]
+}
