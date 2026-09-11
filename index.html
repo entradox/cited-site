@@ -200,6 +200,12 @@ footer a{ color:var(--ink-muted) }
     <p class="agency-line">We store the business name, city, and category you submit, and the scan report (kept up to 90 days so shareable links keep working, then deleted). Paying subscribers: Stripe collects your email at checkout; we store it and the business name only to run the weekly watch, and delete them within 7 days of cancellation. We never see card details. We do not sell your data. Request deletion any time: entradox@icloud.com.</p>
   </section>
 
+  <section>
+    <h2>For AI agents</h2>
+    <p class="micro">Agents are first-class users: every capability is an MCP tool or a plain HTTPS+JSON call, no signup. Full API reference for agents: <a href="https://cited-api-production.up.railway.app/llms.txt">llms.txt</a> · registry entry <code>io.github.entradox/cited-visibility-scanner</code></p>
+    <p class="micro"><strong>Claude Code:</strong> <code>claude mcp add --transport http cited https://cited-api-production.up.railway.app/mcp/</code> &nbsp;·&nbsp; <strong>REST:</strong> <code>POST /scan</code> · <code>GET /report/{id}</code> · <code>GET /watch/{business}</code></p>
+  </section>
+
   <footer>
     <p>Cited is a trade name of Parmanand LLC (Georgia, USA). Contact: entradox@icloud.com</p>
     <p><a href="terms.html">Terms of Service</a> · <a href="terms.html#privacy">Privacy</a></p>
