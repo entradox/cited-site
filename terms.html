@@ -80,7 +80,7 @@ footer a{ color:var(--ink-muted) }
 
   <section>
     <h2>3. Public data only</h2>
-    <p>We never access a scanned business's systems, website internals, or accounts. We only ask public AI engines questions and read their public answers. Nothing is installed, no credentials are collected, no infrastructure is probed.</p>
+    <p>We read only pages that are already public: the sources the AI engines cited in their answers, and the homepage of a site address a caller supplies, if any. Those requests are ordinary HTTP GET and HEAD requests carrying a user agent that identifies our crawler. Nothing is installed, no credentials are collected, no login is attempted, and nothing reachable only through authentication is accessed. We do not treat a site's robots.txt directives as binding on these requests.</p>
   </section>
 
   <section>
